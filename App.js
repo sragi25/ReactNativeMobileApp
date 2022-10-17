@@ -38,7 +38,7 @@ const App = () => {
   }, [api.key, input]);
 
   return (
-    <View style={styles.root}>
+    <View style={styles.container}>
       <ImageBackground
         source={require("./assets/weather.jpg")}
         resizeMode="cover"
@@ -50,7 +50,7 @@ const App = () => {
             onChangeText={(text) => setInput(text)}
             value={input}
             placeholderTextColor={"#000"}
-            style={styles.textInput}
+            style={styles.input}
             onSubmitEditing={fetchDataHandler}
           />
         </View>
@@ -61,16 +61,16 @@ const App = () => {
         )}
         {data && (
           <>
-            <View style={styles.infoView}>
-              <Text style={styles.cityCountryText}>
+            <View style={styles.info}>
+              <Text style={styles.cityCountry}>
                 {`${data?.name}, ${data?.sys?.country}`}
               </Text>
               {/* <Text style={styles.dateText}>{new Date().toLocaleString()}</Text> */}
               <Text
-                style={styles.tempText}
+                style={styles.temp}
               >{`${data?.main?.temp.toFixed()}℉`}</Text>
               <Text style={styles.minMaxText}> {``}</Text>
-              <Text style={styles.feelsLikeText}>
+              <Text style={styles.feelsLike}>
                 Feels like {`${data?.main?.feels_like.toFixed()}℉`}
               </Text>
               <Text style={styles.humidity}>
@@ -90,7 +90,7 @@ const App = () => {
 };
 
 const styles = StyleSheet.create({
-  root: {
+  container: {
     flex: 1,
 
     // backgroundColor: "#fff",
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
   },
-  textInput: {
+  input: {
     borderBottomWidth: 3,
     padding: 5,
     paddingVertical: 20,
@@ -112,10 +112,10 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     borderBottomColor: "#FFA500",
   },
-  infoView: {
+  info: {
     alignItems: "center",
   },
-  cityCountryText: {
+  cityCountry: {
     color: "#fff",
     fontSize: 40,
     fontWeight: "bold",
@@ -125,13 +125,13 @@ const styles = StyleSheet.create({
     fontSize: 22,
     marginVertical: 10,
   },
-  tempText: {
+  temp: {
     color: "#fff",
     fontSize: 40,
     marginVertical: 10,
   },
 
-  feelsLikeText: {
+  feelsLike: {
     color: "#fff",
     fontSize: 30,
     padding: 20,
